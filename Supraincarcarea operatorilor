@@ -1,0 +1,41 @@
+istream& operator>>(istream& in, Test& ob)
+{   in>>ob.x>>ob.y;
+    return in;
+}
+
+ostream& operator<<(ostream&out, student& s)
+{
+      out << s.nume <<" "<s.grupa;
+      return out;
+}
+
+student operator+(student A, string s)
+{
+    student temp (A);  /// copie obiectului actual = obiectul care apeleaza functia
+    temp.nume = temp.nume + s;
+    return temp;
+}
+
+student student::operator+(int x)
+{
+    student temp (*this);  /// copie obiectului actual = obiectul care apeleaza functia
+    temp.grupa = temp.grupa + x;
+    return temp;
+}
+
+student student::operator+=(int x)
+{
+    grupa += x;
+    return *this;
+}
+
+student student::operator=(student ob)
+{
+    if (this != &ob)
+    {
+        cout<<"\n operator de atribuire explicit \n";
+        this->nume = ob.nume;
+        this->grupa = ob.grupa;
+    }
+    return *this;
+}
